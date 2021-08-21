@@ -1,7 +1,7 @@
 from PIL import Image, ImageOps
 import numpy as np
 
-def classify(image, model):
+def classify(image, model, labels):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     image = Image.open(image)
     #resize the image to a 224x224 with the same strategy as in TM2:
@@ -19,4 +19,4 @@ def classify(image, model):
     # run the inference
     prediction = model.predict(data)
     maxval = np.argmax(prediction)
-    return LABELS[maxval]
+    return labels[maxval]
